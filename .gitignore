@@ -1,0 +1,21 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.vscode/
+# Python environment and generated files
+.venv/
+*.pyo
+*.pyd
+
+# Local environment and secrets
+.env.*
+!.env.example
+
+# IDE and OS files
+.idea/
+.DS_Store
+Thumbs.db
+
+# Old Git history backup
+.git-old/

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Medify - Online Pharmacy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=6">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">Medify</a>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for medicines or describe your symptoms...">
+            <button id="voiceBtn" class="voice-btn" onclick="startVoiceSearch()" title="Voice Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            </button>
+            <button class="search-btn" onclick="searchMedicines()">Search</button>
+        </div>
+
+        <div class="user-actions">
+            <a href="#">Login / Register</a>
+            <button class="cart-btn">🛒 Cart (<span id="cartCount">0</span>)</button>
+        </div>
+    </header>
+
+    <nav class="categories-nav">
+        <a href="#">Pain Relief</a>
+        <a href="#">Cold & Flu</a>
+        <a href="#">Diabetes Care</a>
+        <a href="#">Heart Health</a>
+        <a href="#">First Aid</a>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Razorpay Fake Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="{% static 'js/main.js' %}?v=2"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

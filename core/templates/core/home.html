@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Promotional Banner -->
+<!-- Auto-Sliding Carousel -->
+<div class="carousel-container">
+    <div class="carousel-slide active" style="background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);">
+        <div class="carousel-content">
+            <h1>Upload Prescription & Save</h1>
+            <p>Get flat 20% off on all prescription medicines. Let our pharmacists handle your medical needs.</p>
+            <button class="btn-light">Upload Now</button>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);">
+        <div class="carousel-content">
+            <h1>Voice-Powered AI Search</h1>
+            <p>Don't know the exact medicine? Describe your symptoms using our microphone tool and get AI recommendations instantly.</p>
+            <button class="btn-light" onclick="document.getElementById('searchInput').focus()">Try it Now</button>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);">
+        <div class="carousel-content">
+            <h1>Free Health Assessment</h1>
+            <p>Our AI doctor strictly verifies all your purchases against your medical history to ensure 100% safety.</p>
+            <button class="btn-light">Learn More</button>
+        </div>
+    </div>
+    <!-- Carousel Dots -->
+    <div class="carousel-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+</div>
+
+<!-- Shop by Category -->
+<div class="category-circles-wrapper">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="category-circles">
+        <div class="circle-item" onclick="searchMedicines('Pain Relief')"><div class="circle" style="background-image:url('/static/images/pills.jpg')"></div><span>Pain Relief</span></div>
+        <div class="circle-item" onclick="searchMedicines('Cold & Flu')"><div class="circle" style="background-image:url('/static/images/syrup.jpg')"></div><span>Cold & Flu</span></div>
+        <div class="circle-item" onclick="searchMedicines('Skin')"><div class="circle" style="background-image:url('/static/images/cream.jpg')"></div><span>Skin Care</span></div>
+        <div class="circle-item" onclick="searchMedicines('First Aid')"><div class="circle" style="background-image:url('/static/images/firstaid.jpg')"></div><span>First Aid</span></div>
+        <div class="circle-item" onclick="searchMedicines('Diabetes')"><div class="circle" style="background-image:url('/static/images/pills.jpg')"></div><span>Diabetes</span></div>
+        <div class="circle-item" onclick="searchMedicines('Heart')"><div class="circle" style="background-image:url('/static/images/pills.jpg')"></div><span>Heart Health</span></div>
+    </div>
+</div>
+
+<div id="aiBanner" class="ai-banner">
+    <h3 style="color: #1565c0; margin-bottom: 10px;">Doctor Assessment</h3>
+    <p id="aiAdvice" style="margin-bottom: 10px;"></p>
+    <small id="aiDisclaimer" style="color: #d32f2f; font-weight: bold;"></small>
+</div>
+
+<h2 class="section-title" id="resultsTitle">Trending Medicines</h2>
+<div class="grid" id="resultsGrid">
+    <!-- Results injected via JS -->
+    <p style="padding-left: 20px;">Loading medicines...</p>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+        <h2>Patient Details & Checkout</h2>
+        <p style="margin-bottom: 15px; font-size: 13px; color: #666;">Before checking out, we will securely verify your medical profile against the selected medicine.</p>
+
+        <div id="checkoutForm">
+            <div class="form-group">
+                <label>Patient Name</label>
+                <input type="text" id="patientName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="checkbox" id="hasDiabetes"> I have Diabetes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="checkbox" id="hasThyroid"> I have a Thyroid Condition
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Other Conditions</label>
+                <textarea id="otherConditions" placeholder="Any other allergies or conditions?"></textarea>
+            </div>
+            <input type="hidden" id="checkoutMedicineId">
+            <input type="hidden" id="checkoutMedicineName">
+        </div>
+
+        <div id="aiCheckoutAdvice"></div>
+
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn-proceed" id="proceedBtn" onclick="verifyAndCheckout()">Verify & Pay</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
