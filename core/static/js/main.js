@@ -115,6 +115,7 @@ function callAIAssistant(symptoms) {
     })
     .then(response => response.json())
     .then(data => {
+          console.log("AI recommendation response:", data);
         if (data.success) {
             const banner = document.getElementById("aiBanner");
             banner.style.display = "block";
@@ -187,7 +188,7 @@ function verifyAndCheckout() {
     } else {
         // Step 2: Razorpay Fake Payment
         const options = {
-            "key": "rzp_test_Shn78qatVKaTIB",
+            "key": razorpayKeyId,
             "amount": currentPrice * 100,
             "currency": "INR",
             "name": "Medify",

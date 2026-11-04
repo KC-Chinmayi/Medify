@@ -39,9 +39,14 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Razorpay Fake Script -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="{% static 'js/main.js' %}?v=2"></script>
+   <!-- Razorpay Checkout -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    const razorpayKeyId = "{{ razorpay_key_id|escapejs }}";
+</script>
+
+<script src="{% static 'js/main.js' %}?v=3"></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
